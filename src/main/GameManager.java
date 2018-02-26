@@ -45,7 +45,7 @@ public class GameManager {
 		BOARD_STRING = buildBoardString();
 		populateGrid();
 		populateCharBoard();
-//		findAllWords();
+//		findAllWords(); //V3
 //		System.out.println("Board String: \n" + BOARD_STRING);
 //		System.out.println("BoardWordList:");
 //		System.out.println(playedWords);
