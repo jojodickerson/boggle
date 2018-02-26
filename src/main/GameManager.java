@@ -279,6 +279,7 @@ public class GameManager {
 	}
 
 	/* branch test1 */
+	/*branch test2*/
 	//V1
 //	private void compareWordsFromCMDLine() {
 //		String currentWord;
