@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="BoggleV2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/GameVersions/BoggleV2/BoggleV2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

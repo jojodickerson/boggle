@@ -1,0 +1,91 @@
+.root{
+    -fx-font-size: 10pt;
+    -fx-font-family: "Courier New";
+    -fx-base: rgba(189,189,189,0.98);
+    -fx-background: rgba(189,189,189,0.98);
+    -fx-border-color:rgba(72,72,72,0.98);
+}
+
+.button:pressed:hover{
+    -fx-text-fill: black;
+    -fx-background-color: lightgrey;
+}
+
+.label{
+    -fx-font-weight: bold;
+}
+
+.feedbackLabel{
+    -fx-background-color: rgba(72,72,72,0.98);
+    -fx-font-weight: bold;
+    -fx-text-fill: whitesmoke;
+    -fx-min-width: 100%;
+    -fx-text-alignment: center;
+
+}
+
+/*.tileLabel .text-field{*/
+    /*-fx-text-alignment: center;*/
+    /*-fx-alignment: center;*/
+
+/*}*/
+.die{
+    -fx-font-family: sans-serif bold;
+    -fx-font-size: 35;
+    -fx-font-smoothing-type:gray;
+    -fx-alignment: center;
+    -fx-text-fill:rgba(58,58,58,0.98);
+    -fx-background-image: url("/boggleDie.png") ;
+    -fx-min-width: 55px;
+    -fx-max-width: 55px;
+    -fx-min-height: 55px;
+    -fx-max-height: 55px;
+    -fx-border-color: none;
+
+}
+
+.tileLabel{
+    -fx-font-family: sans-serif bold;
+    -fx-font-size: 35;
+    -fx-font-smoothing-type:gray;
+    -fx-text-alignment: center;
+    -fx-text-fill:rgba(58,58,58,0.98);
+    -fx-background-image: url("/boggleDie.png") ;
+    -fx-animated: true;
+    -fx-min-width: 55px;
+    -fx-min-height: 55px;
+    -fx-border-color: none;
+    /*-fx-padding: 10px;*/
+}
+.list-view{
+    -fx-background-color: rgba(185,185,191,0.98);
+}
+.list-view .list-cell:even{
+    -fx-background-color:rgba(189,189,189,0.98);
+}
+.list-view .list-cell:odd{
+    -fx-background-color:lightgrey;
+}
+.list-view .list-cell{
+    -fx-font-size: 10pt;
+    -fx-font-weight: bolder;
+    -fx-text-alignment: center;
+}
+.listBad .list-cell{
+    -fx-text-fill: rgba(173,30,42,0.98);
+}
+.listBad .list-cell:odd{
+    -fx-background-color:rgba(189,189,189,0.98);
+}
+.listBad .list-cell:even{
+    -fx-background-color:lightgrey;
+}
+
+.text-field{
+    -fx-background-color: lightgrey;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-border-color:rgba(72,72,72,0.98);
+}
+
+

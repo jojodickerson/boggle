@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_boggle" default="compile.module.boggle">
+  <dirname property="module.boggle.basedir" file="${ant.file.module_boggle}"/>
+  
+  <property name="module.jdk.home.boggle" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.boggle" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.boggle" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.boggle" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="boggle.output.dir" value="${module.boggle.basedir}/out/production/Boggle"/>
+  <property name="boggle.testoutput.dir" value="${module.boggle.basedir}/out/test/Boggle"/>
+  
+  <path id="boggle.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="boggle.module.production.classpath">
+    <path refid="${module.jdk.classpath.boggle}"/>
+  </path>
+  
+  <path id="boggle.runtime.production.module.classpath">
+    <pathelement location="${boggle.output.dir}"/>
+  </path>
+  
+  <path id="boggle.module.classpath">
+    <path refid="${module.jdk.classpath.boggle}"/>
+    <pathelement location="${boggle.output.dir}"/>
+  </path>
+  
+  <path id="boggle.runtime.module.classpath">
+    <pathelement location="${boggle.testoutput.dir}"/>
+    <pathelement location="${boggle.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.boggle">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.boggle">
+    <patternset refid="excluded.from.module.boggle"/>
+  </patternset>
+  
+  <path id="boggle.module.sourcepath">
+    <dirset dir="${module.boggle.basedir}">
+      <include name="src"/>
+      <include name="resources"/>
+      <include name="src/resources"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.boggle" depends="compile.module.boggle.production,compile.module.boggle.tests" description="Compile module Boggle"/>
+  
+  <target name="compile.module.boggle.production" depends="register.custom.compilers" description="Compile module Boggle; production classes">
+    <mkdir dir="${boggle.output.dir}"/>
+    <javac2 destdir="${boggle.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.boggle}/javac">
+      <compilerarg line="${compiler.args.boggle}"/>
+      <bootclasspath refid="boggle.module.bootclasspath"/>
+      <classpath refid="boggle.module.production.classpath"/>
+      <src refid="boggle.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.boggle"/>
+    </javac2>
+    
+    <copy todir="${boggle.output.dir}">
+      <fileset dir="${module.boggle.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.boggle.basedir}/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.boggle.basedir}/src/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.boggle.tests" depends="register.custom.compilers,compile.module.boggle.production" description="compile module Boggle; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.boggle" description="cleanup module">
+    <delete dir="${boggle.output.dir}"/>
+    <delete dir="${boggle.testoutput.dir}"/>
+  </target>
+</project>
