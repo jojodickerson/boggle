@@ -1,11 +1,11 @@
 /***************************************************************
  * UNM CS 351L Spring '18
- * Boggle Game V2
+ * Boggle Game V4
  * Joanna Dickerson
  *
  * Dictionary Class
  ***************************************************************/
-package main;
+package p1;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class Dictionary {
 	private final String animals ="/resources/animals.txt";
 	private final String dictionary = "/resources/dictionary.txt";
 
-	//main dictionary List populated by readFileIn()
+	//p1 dictionary List populated by readFileIn()
 	private final ArrayList<String> words = new ArrayList<>();
 	private final int minWord, maxWord; //used to filter out words not withing length parameters
 

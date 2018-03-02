@@ -6,6 +6,12 @@
     -fx-border-color:rgba(72,72,72,0.98);
 }
 
+.button{
+    -fx-text-fill: black;
+    -fx-font-weight: bolder;
+    -fx-min-width: 100px;
+
+}
 .button:pressed:hover{
     -fx-text-fill: black;
     -fx-background-color: lightgrey;
@@ -13,6 +19,11 @@
 
 .label{
     -fx-font-weight: bold;
+}
+
+.inputLabel{
+    -fx-font-size: 19;
+    -fx-text-fill: royalblue;
 }
 
 .feedbackLabel{
@@ -24,11 +35,6 @@
 
 }
 
-/*.tileLabel .text-field{*/
-    /*-fx-text-alignment: center;*/
-    /*-fx-alignment: center;*/
-
-/*}*/
 .die{
     -fx-font-family: sans-serif bold;
     -fx-font-size: 35;
@@ -42,6 +48,17 @@
     -fx-max-height: 55px;
     -fx-border-color: none;
 
+}
+
+.die:hover{
+    -fx-font-size: 38;
+    -fx-border-color: cornflowerblue;
+    -fx-border-width: 3px;
+}
+
+.dieVisited{
+    -fx-border-color: #0066FF;
+    -fx-background-image: url("/resources/boggleDieVisited.png") ;
 }
 
 .tileLabel{

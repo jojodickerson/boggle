@@ -15,7 +15,7 @@ public class Dictionary {
 	private String animals = "/animals.txt";
 	private String dictionary = "/dictionary.txt";
 
-	//main dictionary List populated by readFileIn()
+	//p1 dictionary List populated by readFileIn()
 	private ArrayList<String> words = new ArrayList<>();
 
 	/**

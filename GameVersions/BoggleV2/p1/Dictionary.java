@@ -15,7 +15,7 @@ public class Dictionary {
 	private final String animals = "/animals.txt";
 	private final String dictionary = "/dictionary.txt";
 
-	//main dictionary List populated by readFileIn()
+	//p1 dictionary List populated by readFileIn()
 	private final ArrayList<String> words = new ArrayList<>();
 	private final int minWord, maxWord; //used to filter out words not withing length parameters
 

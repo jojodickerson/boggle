@@ -1,12 +1,12 @@
 /***************************************************************
  * UNM CS 351L Spring '18
- * Boggle Game V2
+ * Boggle Game V4
  * Joanna Dickerson
  *
  * GameManager Class
  ***************************************************************/
 
-package main;
+package p1;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,19 +23,19 @@ public class GameManager {
 	private int score = 0;
 	private final Random rand = new Random();
 
-	private Scanner sc = new Scanner(System.in); //v1 input
-	private String currentWord; // current user input word
-
-	private final String BOARD_STRING; //main string to populate charBoard and gridBoard
+	//private Scanner sc = new Scanner(System.in); //v1 input
+	private final String BOARD_STRING; //p1 string to populate charBoard and gridBoard
 	private final char[][] charBoard = new char[M][N]; //used for isOnBoard search
+
+	private final Dictionary dict = new Dictionary(MIN_WORD, MAX_WORD);
+	private final ArrayList<String> wordsOnBoard = new ArrayList<>();
+	private String currentWord; // current user input word
+	private final ObservableList<String> playedWords =
+			FXCollections.observableArrayList();
 
 	//FXML view grid ** intentionally set to Package-Private
 	final GridPane gridBoard = new GridPane();
 
-	private final Dictionary dict = new Dictionary(MIN_WORD, MAX_WORD);
-	private final ArrayList<String> wordsOnBoard = new ArrayList<>();
-	private final ObservableList<String> playedWords =
-			FXCollections.observableArrayList();
 
 	/**
 	 * GameManager()
@@ -45,20 +45,22 @@ public class GameManager {
 		BOARD_STRING = buildBoardString();
 		populateGrid();
 		populateCharBoard();
-//		findAllWords(); //V3
+		findAllWords();
 //		System.out.println("Board String: \n" + BOARD_STRING);
 //		System.out.println("BoardWordList:");
 //		System.out.println(playedWords);
 //		System.out.println("Unique Words: " + wordsOnBoard.size());
 	}
 
-	//////// Getters & Setters --  intentionally set to Package-Private   ////////////
+	/* Getters & Setters --  intentionally set to Package-Private
+	 * -- Accessible by upstream classes Main and Controller
+	*/
 	void setCurrentWord(String currentWord) { this.currentWord = currentWord; }
 	String getCurrentWord() { return currentWord; }
 	int gameWordCount(){ return wordsOnBoard.size() - playedWords.size(); }
 	int getScore() { return score; }
 	void updateScore(){ score += currentWord.length() - 2; }
-	ObservableList<String> getPlayedWords() { return playedWords; }
+	ObservableList <String> getPlayedWords() { return playedWords; }
 
 	/**
 	 * Boolean isPlayable
@@ -76,7 +78,7 @@ public class GameManager {
 	 * Boolean alreadyPlayed()
 	 * @return - checks list of valid words already played - false if not played
 	 */
-	protected Boolean alreadyPlayed(){
+	protected Boolean alreadyPlayed() {
 		Boolean result = false;
 		for (String w : playedWords) {
 			if (w.equals(currentWord)) {
@@ -85,6 +87,7 @@ public class GameManager {
 		}
 		return result;
 	}
+
 	/**
 	 * Boolean isDictionaryWord
 	 * helper method to check if word is in dictionary
@@ -103,9 +106,9 @@ public class GameManager {
 		for (int i = 0; i < M; i++) {
 			for (int j = 0; j < N; j++) {
 				populateCharBoard(); //create fresh copy of board
-				onBoard = gridSearch(i,j,0);
-				if(onBoard){
-					i=M; j = N;/*end searching when found */
+				onBoard = gridSearch(i, j, 0);
+				if (onBoard) {
+					i = M; j = N;/*end searching when found */
 					//System.out.println("Found...");
 				}
 			}
@@ -131,7 +134,7 @@ public class GameManager {
 
 			//replaces matched char with lower case to avoid path re-use
 			charBoard[i][j] = currentWord.toLowerCase().charAt(k);
-//			printBoard(charBoard); //for dev humans
+			//printBoard(charBoard); //for dev humans
 
 			if (k == currentWord.length() - 1) {
 				//System.out.println("Last letter found. " + currentWord.charAt(k));
@@ -155,6 +158,7 @@ public class GameManager {
 	/**
 	 * findAllWords()
 	 * dev helper function that creates a full list of words on the board
+	 * added to game view as # of unique words
 	 */
 	private void findAllWords() {
 		for (String w : dict.getWords()) {
@@ -164,8 +168,6 @@ public class GameManager {
 				wordsOnBoard.add(currentWord);
 			}
 		}
-		System.out.println(wordsOnBoard);
-		currentWord = null;
 	}
 
 	/**
@@ -188,7 +190,7 @@ public class GameManager {
 	/**
 	 * buildBoardString()
 	 *
-	 * @return - String - generated BOARD_STRING assign to var BOARD_STRING
+	 * @return - String - generates BOARD_STRING assigned to var BOARD_STRING
 	 */
 	private String buildBoardString() {
 		String str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -200,8 +202,11 @@ public class GameManager {
 		return checkForQ(sb);
 	}
 
-	// helper for buildBoardString
-	private Boolean checkCharFrequency(char ch, StringBuilder sb){
+	/**
+	 * checkCharFrequency
+	 * helper for buildBoardString()
+	 */
+	private Boolean checkCharFrequency(char ch, StringBuilder sb) {
 		//Count char frequency
 		int frequency = 0;
 		for (int i = 0; i < sb.length(); i++) {
@@ -209,11 +214,13 @@ public class GameManager {
 				++frequency;
 			}
 		}
-
 		return (frequency < 4);
 	}
 
-	// helper for buildBoardString
+	/**
+	 * checkForQ
+	 * helper for buildBoardString()
+	 */
 	private String checkForQ(StringBuilder sb) {
 		for (int i = 0; i < MAX_WORD; i++) {
 			int randNum = rand.nextInt(100);
@@ -223,8 +230,8 @@ public class GameManager {
 				//Make a list of current'Q' adjacent spots
 				ArrayList<Integer> adjList = new ArrayList<>();
 				adjList.addAll(Arrays.asList(i - M, i + M));
-				if (i % M != 0) {adjList.addAll(Arrays.asList(i - 1, i - M - 1, i + M - 1));}
-				if (i % M != M - 1) {adjList.addAll(Arrays.asList(i + 1, i + M + 1, i - M + 1));}
+				if (i % M != 0) { adjList.addAll(Arrays.asList(i - 1, i - M - 1, i + M - 1)); }
+				if (i % M != M - 1) { adjList.addAll(Arrays.asList(i + 1, i + M + 1, i - M + 1)); }
 
 				//Filter any out-of-bounds adjacent spots
 				adjList.removeIf((Integer in) -> in < 0 || in >= MAX_WORD);
@@ -232,15 +239,16 @@ public class GameManager {
 				//checks if any valid adjacent spots are already 'U'
 				Boolean adjU = false;
 				for (Integer in : adjList) {
-					if (sb.charAt(in) == 'U') { adjU = true; }
+					if (sb.charAt(in) == 'U') {
+						adjU = true;
+					}
 				}
 
 				//adds 'U' in adjacent spot iff 'U' frequency < 4 and no existing adj 'U'
 				if (!adjU && checkCharFrequency('U', sb)) {
-					System.out.println(sb.toString());
 					int adjacentSpot = adjList.get(rand.nextInt(adjList.size()));
-					sb.setCharAt(adjacentSpot,'U');
-					System.out.println(sb.toString() + "\n U placed at index " + adjacentSpot);
+					sb.setCharAt(adjacentSpot, 'U');
+					//System.out.println(sb.toString() + "\n U placed at index " + adjacentSpot);
 				}
 			}
 		}

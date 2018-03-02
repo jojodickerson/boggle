@@ -18,16 +18,22 @@
 * Enter a word in the textField + ENTER key OR "Submit" button
 * "New Game" button will start a new game in same scene.
 
+#### V3
+* Game play basically the same as V2
+
+#### V4
+* click on boggle die to build-up word
+* ENTER or SPACE key or "Submit" button to play word  
+* "Clear" button resets current word choice
+
 
 ### Comments / Notes
-* V1 - BoggleV1.jar was published without assets, but is now corrected as of V2 commit
+* 
 
 #### What works
-* V1 and V2
+* All basic requirement
 
-#### What's Lacking
-* Timer (V3)
-* GUI game Play (V4)
+
 
 
 

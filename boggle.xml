@@ -140,7 +140,7 @@
       <exclude name="Boggle.jar"/>
     </fx:fileset>
     <fx:fileset id="all_Boggle" dir="${artifact.temp.output.Boggle}" includes="**/*.jar"/>
-    <fx:application id="Boggle_id" name="Boggle" mainClass="main.Main"/>
+    <fx:application id="Boggle_id" name="Boggle" mainClass="p1.Main"/>
     <fx:jar destfile="${artifact.temp.output.Boggle}/Boggle.jar">
       <fx:application refid="Boggle_id"/>
       <fileset dir="${artifact.temp.output.Boggle}" excludes="**/*.jar"/>

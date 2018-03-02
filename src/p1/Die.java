@@ -1,12 +1,12 @@
 /***************************************************************
  * UNM CS 351L Spring '18
- * Boggle Game V2
+ * Boggle Game V4
  * Joanna Dickerson
  *
  * Die Class
  ***************************************************************/
 
-package main;
+package p1;
 
 import javafx.scene.control.Label;
 

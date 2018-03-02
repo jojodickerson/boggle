@@ -11,8 +11,8 @@ package GameVersions.BoggleV2.p1;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.GridPane;
-import main.Dictionary;
-import main.Die;
+import p1.Dictionary;
+import p1.Die;
 
 import java.util.*;
 
@@ -28,13 +28,13 @@ public class GameManager {
 	private Scanner sc = new Scanner(System.in); //v1 input
 	private String currentWord; // current user input word
 
-	private final String BOARD_STRING; //main string to populate charBoard and gridBoard
+	private final String BOARD_STRING; //p1 string to populate charBoard and gridBoard
 	private final char[][] charBoard = new char[M][N]; //used for isOnBoard search
 
 	//FXML view grid ** intentionally set to Package-Private
 	final GridPane gridBoard = new GridPane();
 
-	private final main.Dictionary dict = new Dictionary(MIN_WORD, MAX_WORD);
+	private final p1.Dictionary dict = new Dictionary(MIN_WORD, MAX_WORD);
 	private final ArrayList<String> wordsOnBoard = new ArrayList<>();
 	private final ObservableList<String> playedWords =
 			FXCollections.observableArrayList();
@@ -258,7 +258,7 @@ public class GameManager {
 		for (int i = 0; i < M; i++) {
 			for (int j = 0; j < N; j++) {
 				String d = BOARD_STRING.substring(k, k + 1);
-				main.Die die = new Die(d);
+				p1.Die die = new Die(d);
 				gridBoard.add(die, j, i);
 				k++;
 			}
