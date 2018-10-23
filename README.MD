@@ -1,8 +1,5 @@
 # Boggle Game CS 351L Spring'18
-* Joanna Dickerson 
-* CS user: jodice
-* UNM ID: 101749834
-* Email: jojodickerson@unm.edu
+* By Joanna Dickerson 
 
 ### About Versions 
 * Jar files in folder /GameVersions and labeled "BoggleV#.jar"
